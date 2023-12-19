@@ -1120,7 +1120,7 @@ impl Recv {
         &mut self,
         cx: &Context,
         stream: &mut Stream,
-    ) -> Poll<Option<Result<http::header::map::HeaderMap, proto::Error>>> {
+    ) -> Poll<Option<Result<HeaderMap, proto::Error>>> {
         match stream.pending_recv.pop_front(&mut self.buffer) {
             Some(Event::Trailers(trailers)) => Poll::Ready(Some(Ok(trailers))),
             Some(event) => {

@@ -427,7 +427,7 @@ impl RecvStream {
     pub fn poll_trailers(
         &mut self,
         cx: &mut Context,
-    ) -> Poll<Result<Option<http::header::map::HeaderMap>, crate::Error>> {
+    ) -> Poll<Result<Option<HeaderMap>, crate::Error>> {
         match ready!(self.inner.inner.poll_trailers(cx)) {
             Some(Ok(map)) => Poll::Ready(Ok(Some(map))),
             Some(Err(e)) => Poll::Ready(Err(e.into())),
